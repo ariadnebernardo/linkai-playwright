@@ -15,7 +15,7 @@ test("Deve logar com sucesso", async ({ page }) => {
   await loginPage.open();
   await loginPage.submit(user);
 
-  await expect(dashPage.welcome()).toContainText(`Olá, ${user.username}!`);
+  await expect(dashPage.welcome()).toContainText(`Olá, ${user.name}!`);
   await expect(toast.element()).toContainText("Login realizado com sucesso!");
   await expect(toast.element()).toContainText("Bem-vindo de volta ao Linkaí.");
 });

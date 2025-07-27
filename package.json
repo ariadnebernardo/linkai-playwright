@@ -12,6 +12,7 @@
     "@types/node": "^24.0.13"
   },
   "dependencies": {
+    "@faker-js/faker": "^9.9.0",
     "mongodb": "^6.17.0"
   }
 }

@@ -1,20 +1,19 @@
 import { test, expect } from '@playwright/test'
 
 import { getSignupPage } from '../support/pages/SignupPage'
-import { getNewUser } from '../support/fixtures/User'
 import { UserSignup } from '../support/fixtures/User'
-// import { clearUsersCollection } from "../support/utils/mongoUtils"
 import { getDashPage } from '../support/pages/DashPage'
 import { getToast } from '../support/pages/components/Toast'
+import { getNewUser } from '../support/fixtures/User'
+import { removeUserByEmail } from '../support/utils/mongoUtils'
 
 test('Deve realizar o cadastro com sucesso', async ({ page }) => {
-  // await clearUsersCollection()
-
   const signupPage = getSignupPage(page)
   const dashPage = getDashPage(page)
   const toast = getToast(page)
 
   const user: UserSignup = getNewUser()
+  await removeUserByEmail(user.email)
 
   await signupPage.open()
   await signupPage.fill(user)
@@ -31,8 +30,6 @@ test('Deve exibir erro ao tentar cadastrar com campos obrigatórios em branco', 
 }) => {
   const signupPage = getSignupPage(page)
   const toast = getToast(page)
-
-  const user: UserSignup = getNewUser()
 
   await signupPage.open()
   await signupPage.submit()

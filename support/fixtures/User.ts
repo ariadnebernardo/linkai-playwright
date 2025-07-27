@@ -14,13 +14,25 @@ export interface UserLogin {
   password: string
 }
 
-export function getNewUser() {
+export function getFakeUser() {
   const defaultPassword = 'pwd123'
 
   return {
     name: faker.person.fullName(),
     username: faker.internet.username().replace('.', ''),
     email: faker.internet.email(),
+    password: defaultPassword,
+    confirmPassword: defaultPassword,
+  }
+}
+
+export function getNewUser() {
+  const defaultPassword = 'pwd123'
+
+  return {
+    name: 'Ariadne',
+    username: 'ariadne_bernardo',
+    email: 'ariadne@qa.com.br',
     password: defaultPassword,
     confirmPassword: defaultPassword,
   }

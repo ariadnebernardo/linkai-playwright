@@ -1,15 +1,14 @@
-import { MongoClient } from "mongodb"
+import { Collection, MongoClient } from 'mongodb'
 
-const uri = "mongodb://localhost:27017"
-const client = new MongoClient(uri)
+const url = 'mongodb://localhost:27017/linkai'
+const client = new MongoClient(url)
 
-export async function clearUsersCollection() {
-  try {
-    await client.connect()
-    const db = client.db("linkai")
-    const users = db.collection("users")
-    await users.deleteMany({})
-  } finally {
-    await client.close()
-  }
+export async function removeUserByEmail(email: string) {
+  await client.connect()
+  const result = await client
+    .db()
+    .collection('users')
+    .deleteOne({ email: email })
+
+  return result.deletedCount
 }

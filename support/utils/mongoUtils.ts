@@ -12,3 +12,20 @@ export async function removeUserByEmail(email: string) {
 
   return result.deletedCount
 }
+
+export async function removeByUsername(username: string) {
+  await client.connect()
+  const result = await client
+    .db()
+    .collection('users')
+    .deleteOne({ username: username })
+
+  return result.deletedCount
+}
+
+export async function insertUser(user: any) {
+  await client.connect()
+  const result = await client.db().collection('users').insertOne(user)
+
+  return result.insertedId
+}

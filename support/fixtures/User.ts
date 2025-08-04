@@ -38,6 +38,18 @@ export function getNewUser() {
   }
 }
 
+export function getDuplicateUser() {
+  const defaultPassword = 'pwd123'
+
+  return {
+    name: 'Bruno',
+    username: 'bruno',
+    email: 'bruno@qa.com.br',
+    password: defaultPassword,
+    confirmPassword: defaultPassword,
+  }
+}
+
 export const Users = {
   validUser: {
     name: 'papito',
